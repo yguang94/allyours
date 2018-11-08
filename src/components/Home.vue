@@ -27,7 +27,7 @@
           </el-col>
           <el-col :span="24">
             <div class="el-progress_warp">
-              <div class="progress_tip">
+              <div class="progress_tip" :style="{ 'left': progressNum + 'vw' }">
                 <span>开奖进度: {{progressNum}}</span>
               </div>
               <el-progress :percentage="progressNum" :stroke-width="18" :show-text='false' color="#FA52FC"></el-progress>
@@ -204,7 +204,7 @@
     props: {},
     data() {
       return {
-        progressNum: 58
+        progressNum: 57,
       }
     },
     watch: {},
