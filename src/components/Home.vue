@@ -27,7 +27,10 @@
           </el-col>
           <el-col :span="24">
             <div class="el-progress_warp">
-              <el-progress :percentage="68" :stroke-width="18" :show-text='false' color="#FA52FC"></el-progress>
+              <div class="progress_tip">
+                <span>开奖进度: {{progressNum}}</span>
+              </div>
+              <el-progress :percentage="progressNum" :stroke-width="18" :show-text='false' color="#FA52FC"></el-progress>
               <span class="progress_text3" style="float: left">0.01ETH/人次</span>
               <span class="progress_text3" style="float: right">参与人次: 100</span>
             </div>
@@ -187,19 +190,29 @@
 </template>
 
 <script>
+
+  function test() {
+    let that = this
+    let t
+    clearInterval(t)
+    t = setInterval(function () {
+      that.progressNum = Math.random()*100
+    },1000)
+  }
   export default {
     components: {},
     props: {},
     data() {
-      return {}
+      return {
+        progressNum: 58
+      }
     },
     watch: {},
     computed: {},
     methods: {},
     created() {
     },
-    mounted() {
-    }
+    // mounted:test
   }
 </script>
 

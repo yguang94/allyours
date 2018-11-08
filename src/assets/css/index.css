@@ -130,8 +130,20 @@ body{
   margin: 4vh 0 ;
 }
 .el-progress_warp{
-  margin: 4vh 0;
+  margin: 5vh 0;
   padding: 0 2vw;
+  position: relative;
+}
+.progress_tip{
+  width: 120px;
+  height: 30px;
+  background: #fff;
+  color: #3a333f;
+  line-height: 30px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  position: absolute;
+  top: -40px;
 }
 .progress_text3{
   font-size: 18px;
