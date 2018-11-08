@@ -166,7 +166,7 @@ const canvas = class canvas {
 
         function run() {
             const sw = canvas.width / 100;
-            const sh = sw * 25; //调高矮
+            const sh = sw * 30; //调高矮
             for (let i = 0; i < 180; i++) {
                 canvas.beginPath();
                 canvas.strokeStyle(
@@ -175,7 +175,7 @@ const canvas = class canvas {
                     0.3
                 );
                 for (let j = -50; j < 50; j++) {
-                    const h = perlin.noise(j * 0.05, z - i * 0.01, z)-0.6; //调位置
+                    const h = perlin.noise(j * 0.05, z - i * 0.01, z)-0.3; //调位置
                     canvas.lineTo(
                         canvas.width * 0.5 + 0.01 * (i + 180) * j * sw * 0.5,
                         -90 + i + canvas.height * 0.7 + h * sh

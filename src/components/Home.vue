@@ -1,6 +1,6 @@
 <template>
     <div class="home_wrap">
-        <Canvas></Canvas>
+        <!--<Canvas></Canvas>-->
         <div class="frist_wrap">
             <!--顶部-->
             <div class="header MaxWidth">
@@ -206,7 +206,7 @@
         props: {},
         data() {
             return {
-                progressNum: 72,
+                progressNum: 68,
                 progressNum2: ''
             }
         },
