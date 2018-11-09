@@ -189,8 +189,8 @@ body{
   margin: 4vh 0;
 }
 .logoS{
-  height: 4vh;
-  width: 2vw;
+  height: 35px;
+  width: 27px;
   background: url("../images/logoS.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -201,12 +201,16 @@ body{
 .contentCard{
   color: #3a333f;
 }
+.contentCard a{
+  color: #3a333f;
+  text-decoration: none;
+}
           /*参与*/
 .periodText{
   display: inline-block;
-  width: 7vw;
-  height: 2vh;
-  line-height: 2vh;
+  width: 80px;
+  height: 20px;
+  line-height: 20px;
   background: #3a333f;
   color: #fff;
   text-align: center;
@@ -284,4 +288,127 @@ body{
   margin: 6vh 0;
   text-align: center;
   color: rgba(255,255,255,0.3);
+}
+
+/*下载弹窗*/
+.home_wrap .el-dialog__header, .showWinHistoryVisible_header{
+  padding: 0;
+}
+.DownloadAppDialog_close, .showWinHistoryVisible_close{
+  text-align: right;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  line-height: 20px;
+  background: #8c939d;
+  border-radius: 0 0 0 25px;
+  float: right;
+  cursor: pointer;
+  color: #fff;
+}
+.DownloadAppDialogContent{
+  padding: 30px 40px;
+}
+.DownloadAppDialogText1{
+  display: block;
+  color: #3a333f;
+  text-align: center;
+  font-size: 28px;
+}
+.DownloadAppDialogText2{
+  display: block;
+  color: #8c939d;
+  text-align: center;
+  margin-top: 2vh;
+}
+
+.DownloadAppDialogContent_content{
+  margin: 5vh 0 2vh 0;
+}
+.DownloadAppDialog_img{
+  width: 10vw;
+  display: block;
+  margin: 0 auto;
+}
+.DownloadAppDialogText3{
+  display: block;
+  color: #8c939d;
+  text-align: center;
+  margin-top: 3vh;
+}
+
+/*开奖历史弹框*/
+
+.showWinHistoryVisible_close{
+  background: rgba(255,255,255,0.3);
+}
+.el-dialog__body{
+  padding: 0;
+}
+.showWinHistoryContent{
+  background: url("../images/winhistoryD.png") no-repeat;
+  background-size: contain;
+  padding: 30px 40px;
+}
+.showWinHistoryContent_title{
+  width: 100%;
+  height: 120px;
+  line-height: 80px;
+  font-size: 22px;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 400;
+}
+.showWinHistoryContent_content .el-form-item{
+  margin-bottom: 5px;
+}
+
+
+/******************************************************************/
+
+/*开奖历史*/
+.history_headerimg{
+  position: absolute;
+  height: 260px;
+  width: 100%;
+}
+.historyTitle_warp{
+  height: 260px;
+  width: 100%;
+  background: linear-gradient(to right, #020120, #210116);
+}
+.historyProgrsess_warp{
+  padding: 30px 35px;
+}
+.historyProgrsess_img{
+  width: 36px;
+  height: 36px;
+  display: block;
+}
+.historyProgrsess_text{
+  display: block;
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+/*内容*/
+
+.historyContent_icon{
+  display: block;
+  width: 15px;
+  height: 5px;
+  background: #a245ca;
+}
+.historyContent_tiele{
+  font-size: 22px;
+  display: block;
+  margin: 20px 0;
+}
+.historyContent_content .el-form-item{
+  margin-bottom: 5px;
+}
+.histry_warp .el-dialog__header{
+  padding: 0;
 }
