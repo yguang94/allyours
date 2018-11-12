@@ -197,7 +197,7 @@
     <el-dialog
       :show-close='false'
       :visible.sync="DownloadAppVisible"
-      width="60%">
+      width="700px">
         <span slot="title" class="DownloadAppDialog-header">
           <span class="DownloadAppDialog_close" @click="closeDownloadApp"><i class="el-icon-close"></i></span>
         </span>
@@ -367,13 +367,18 @@
     });
     console.log("合约"+helloResult);
 
-    // 中奖方法事件回调
-    // let ClientReceipt = web3.eth.contract(abi);
-    // let clientReceipt = ClientReceipt.at(address);
-    // let event = clientReceipt.drawCallback();
+//     中奖方法事件回调
+     let ClientReceipt = web3.eth.contract(abi);
+     let clientReceipt = ClientReceipt.at(address);
+     let event = clientReceipt.drawCallback();
 
-    console.log(web3.eth);
-    let event =  new web3.eth.filter(address);
+    /*console.log(web3.eth);
+    let event =  new web3.eth.subscribe('logs',{
+        address:address
+    },function (error,result) {
+        if (!error)
+            console.log(result);
+    })*/
 
 
     //监视变化
