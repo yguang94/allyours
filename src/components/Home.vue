@@ -201,22 +201,22 @@
         <span slot="title" class="DownloadAppDialog-header">
           <span class="DownloadAppDialog_close" @click="closeDownloadApp"><i class="el-icon-close"></i></span>
         </span>
-        <div class="DownloadAppDialogContent">
-          <span class="DownloadAppDialogText1">参与夺宝请下载客户端</span>
-          <span class="DownloadAppDialogText2">扫码下载客户端</span>
-          <div class="DownloadAppDialogContent_content">
-            <el-row :gutter="20">
-              <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-                <img class="DownloadAppDialog_img" src="../assets/images/erwei.png" alt="">
-                <span class="DownloadAppDialogText3">ios客户端</span>
-              </el-col>
-              <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-                <img  class="DownloadAppDialog_img" src="../assets/images/erwei.png" alt="">
-                <span class="DownloadAppDialogText3">Android客户端</span>
-              </el-col>
-            </el-row>
-          </div>
+      <div class="DownloadAppDialogContent">
+        <span class="DownloadAppDialogText1">参与夺宝请下载客户端</span>
+        <span class="DownloadAppDialogText2">扫码下载客户端</span>
+        <div class="DownloadAppDialogContent_content">
+          <el-row :gutter="20">
+            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+              <img class="DownloadAppDialog_img" src="../assets/images/erwei.png" alt="">
+              <span class="DownloadAppDialogText3">ios客户端</span>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+              <img class="DownloadAppDialog_img" src="../assets/images/erwei.png" alt="">
+              <span class="DownloadAppDialogText3">Android客户端</span>
+            </el-col>
+          </el-row>
         </div>
+      </div>
     </el-dialog>
 
     <!--开奖历史弹框-->
@@ -225,14 +225,14 @@
       :visible.sync="showWinHistoryVisible"
       width="600px">
       <span slot="title" class="showWinHistoryVisible_header" @click="closeDetails">
-          <span class="showWinHistoryVisible_close" ><i class="el-icon-close"></i></span>
+          <span class="showWinHistoryVisible_close"><i class="el-icon-close"></i></span>
       </span>
       <div class="showWinHistoryContent">
         <div class="showWinHistoryContent_title">
           <span>- 3242 期开奖详情 -</span>
         </div>
         <div class="showWinHistoryContent_content">
-          <el-form  label-position="left" label-width="120px">
+          <el-form label-position="left" label-width="120px">
             <el-form-item label="开奖时间:">
               <span class="showWinHistoryContent_item">
                 2018.10.12 15:20:33
@@ -271,15 +271,132 @@
 </template>
 
 <script>
+  import Web3 from 'web3'
+
+  function init_() {
+    //创建web3对象
+    let web3 = new Web3();
+
+    //连接到以太坊节点
+    web3.setProvider(new Web3.providers.HttpProvider("https://kovan.infura.io/2GGU6GIENZ6AKNTBIQHGVSNXRMAZC732MP"));
+    let abi = [
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "getAddressJoinPersonNumber",
+        "outputs": [
+
+          {
+            "name": "",
+            "type": "uint16"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "getCurrentJoinPersonNumber",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint16"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "getHistory",
+        "outputs": [
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "fallback"
+      },
+      {
+        "anonymous": false,
+        "inputs": [{
+          "indexed": false,
+          "name": "winnerAddress",
+          "type": "address"
+        }],
+        "name": "drawCallback",
+        "type": "event"
+      }
+    ];
+
+    //合约地址
+    let address = "0x588fD6DB7dff7e64f74b2ee6d8fD2b36613d6B1d";
+
+    //通过ABI和地址获取已部署的合约对象
+    let AllYoursContract = new web3.eth.Contract(abi,address);
+    console.log(AllYoursContract);
+
+    //*******************智能合约提供的接口******************
+    //查看当期多少人参加了抽奖
+    let helloResult = AllYoursContract.methods.getCurrentJoinPersonNumber().call().then(function(result ){
+      console.log(123);
+      console.log("当前参加人数" + result);
+    });
+
+    //查看当期参与人的钱包地址和参加时间
+    //人用&分割,时间和钱包地址用|分割
+    let helloResult2 = AllYoursContract.methods.getHistory().call().then(function(result) {
+        console.log("参与人钱包地址 参加时间" + result);
+    });
+    console.log("合约"+helloResult);
+
+    // 中奖方法事件回调
+    // let ClientReceipt = web3.eth.contract(abi);
+    // let clientReceipt = ClientReceipt.at(address);
+    // let event = clientReceipt.drawCallback();
+
+    console.log(web3.eth);
+    let event =  new web3.eth.filter(address);
+
+
+    //监视变化
+    event.watch(function(error, result){
+      //结果包括对 'Deposit'的调用参数在内的各种信息
+      if (!error)
+        console.log(result);
+    });
+  }
+
+
+
   function init() {
     let that = this;
     let width = parseInt(window.getComputedStyle(this.$refs.progressWidth).width);
     that.progressNum2 = (width - 20) * that.progressNum / 100 - 40;
+    this.init_()
   }
 
   function openDownloadApp() {
     this.DownloadAppVisible = true
   }
+
   function closeDownloadApp() {
     this.DownloadAppVisible = false
   }
@@ -287,9 +404,11 @@
   function showDetails() {
     this.showWinHistoryVisible = true
   }
+
   function closeDetails() {
     this.showWinHistoryVisible = false
   }
+
   export default {
     components: {},
     props: {},
@@ -298,7 +417,7 @@
         progressNum: 76,
         progressNum2: '',
         DownloadAppVisible: false,
-        showWinHistoryVisible:false
+        showWinHistoryVisible: false
       }
     },
     watch: {},
@@ -307,7 +426,8 @@
       openDownloadApp,
       closeDownloadApp,
       showDetails,
-      closeDetails
+      closeDetails,
+      init_
     },
     created() {
     },
