@@ -367,26 +367,22 @@
     });
     console.log("合约"+helloResult);
 
-//     中奖方法事件回调
-     let ClientReceipt = web3.eth.contract(abi);
-     let clientReceipt = ClientReceipt.at(address);
-     let event = clientReceipt.drawCallback();
+//     中奖方法事件回调 ???
+     let ClientReceipt = new web3.eth.Contract(abi,address);
+    console.log(ClientReceipt);
+    let clientReceipt = ClientReceipt.events.drawCallback(function(error, event){
+       console.log(event);
+     })
+      .on('data', function (event) {
+        console.log(1);
+        console.log(event);
+      })
+      .on('changed', function(event){
+        console.log(2);
+        // remove event from local database
+      })
+      .on('error', console.error);
 
-    /*console.log(web3.eth);
-    let event =  new web3.eth.subscribe('logs',{
-        address:address
-    },function (error,result) {
-        if (!error)
-            console.log(result);
-    })*/
-
-
-    //监视变化
-    event.watch(function(error, result){
-      //结果包括对 'Deposit'的调用参数在内的各种信息
-      if (!error)
-        console.log(result);
-    });
   }
 
 
