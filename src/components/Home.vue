@@ -272,6 +272,25 @@
 
 <script>
   import Web3 from 'web3'
+  import E from '../service/PCCommon'
+
+
+  //获取参与者数据
+  function init_2() {
+    let url = 'module=account&action=txlist&address=0x588fD6DB7dff7e64f74b2ee6d8fD2b36613d6B1d&startblock=0&endblock=99999999&sort=desc'
+    E.call(url).then((d) => {
+      console.log(d);
+    })
+  }
+
+  //获取中奖信息
+  function init_3() {
+    let url = 'module=account&action=txlistinternal&address=0x588fD6DB7dff7e64f74b2ee6d8fD2b36613d6B1d&startblock=0&endblock=99999999&sort=desc'
+      E.call(url).then((d) => {
+      console.log(d);
+    })
+  }
+
 
   function init_() {
     //创建web3对象
@@ -351,25 +370,21 @@
 
     //通过ABI和地址获取已部署的合约对象
     let AllYoursContract = new web3.eth.Contract(abi,address);
-    console.log(AllYoursContract);
 
     //*******************智能合约提供的接口******************
     //查看当期多少人参加了抽奖
-    let helloResult = AllYoursContract.methods.getCurrentJoinPersonNumber().call().then(function(result ){
-      console.log(123);
+    let LuckyNum = AllYoursContract.methods.getCurrentJoinPersonNumber().call().then(function(result ){
       console.log("当前参加人数" + result);
     });
 
     //查看当期参与人的钱包地址和参加时间
     //人用&分割,时间和钱包地址用|分割
-    let helloResult2 = AllYoursContract.methods.getHistory().call().then(function(result) {
+    let timeAddress = AllYoursContract.methods.getHistory().call().then(function(result) {
         console.log("参与人钱包地址 参加时间" + result);
     });
-    console.log("合约"+helloResult);
 
 //     中奖方法事件回调 ???
      let ClientReceipt = new web3.eth.Contract(abi,address);
-    console.log(ClientReceipt);
     let clientReceipt = ClientReceipt.events.drawCallback(function(error, event){
        console.log(event);
      })
@@ -391,7 +406,9 @@
     let that = this;
     let width = parseInt(window.getComputedStyle(this.$refs.progressWidth).width);
     that.progressNum2 = (width - 20) * that.progressNum / 100 - 40;
-    this.init_()
+    this.init_();
+    this.init_2();
+    this.init_3();
   }
 
   function openDownloadApp() {
@@ -428,7 +445,9 @@
       closeDownloadApp,
       showDetails,
       closeDetails,
-      init_
+      init_,
+      init_2,
+      init_3
     },
     created() {
     },

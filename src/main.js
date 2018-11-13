@@ -6,10 +6,14 @@ import router from './router'
 import ElementUI from 'element-ui'
 import '../theme/index.css'
 import './assets/css/index.css'
+import axios from 'axios'
+import Qs from 'qs'
 
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
+Vue.prototype.axios = axios;
+Vue.prototype.qs = Qs;
 
 /* eslint-disable no-new */
 new Vue({
