@@ -66,6 +66,16 @@ body{
   background: linear-gradient(to right, #020120, #210116);
   /*background-image: linear-gradient(45deg, #210116, #000);*/
 }
+.header{
+  height: 55px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.heaer_placeholder{
+  height: 55px;
+  width: 100%;
+}
 .MaxWidth{
   max-width: 1170px;
   margin: 0 auto !important;
