@@ -71,6 +71,20 @@ body{
   position: absolute;
   top: 0;
   width: 100%;
+  z-index: 9;
+}
+.header_item{
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.5);
+  margin-right: 5vw;
+  cursor: pointer;
 }
 .heaer_placeholder{
   height: 55px;
@@ -184,8 +198,11 @@ body{
 }
 /*次屏*/
 .second_warp{
-  background: url("../images/textureBottom.png") no-repeat 0vh -55vh,
-              url("../images/textureTop.png") no-repeat -1vh 135vh;
+  /*background: url("../images/textureBottom.png") no-repeat 0vh -55vh,*/
+              /*url("../images/textureTop.png") no-repeat -1vh 135vh;*/
+
+  background: url("../images/textureBottom.png") no-repeat 0vh -55vh
+
 
 }
 .content_wrap{
@@ -387,6 +404,12 @@ body{
   width: 100%;
   background: linear-gradient(to right, #020120, #210116);
 }
+.historyTitle_background{
+  height: 260px;
+  width: 100%;
+  background: url("../images/winhistoryR.png") no-repeat 100% 50%;
+  position: absolute;
+}
 .historyProgrsess_warp{
   padding: 30px 35px;
 }
@@ -402,7 +425,9 @@ body{
   font-weight: 600;
   margin-top: 20px;
 }
-
+.cardText{
+  word-wrap:break-word
+}
 /*内容*/
 
 .historyContent_icon{

@@ -63,34 +63,16 @@
                 <el-row>
                   <el-col :span="24">
                     <div style="margin-bottom: 4vh">
-                      <span class="periodText">3243期</span>
-                      <span style="display: inline-block">566 人已参与</span>
+                      <span class="periodText">{{periodCurrent}}期</span>
+                      <span style="display: inline-block">{{participateNum}} 人已参与</span>
                     </div>
                   </el-col>
                   <el-col :span="24">
                     <el-row :gutter="20">
-                      <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                      <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" v-for="(data,index) in participateArr" :key="index">
                         <div class="participateList">
-                          <span class="participateText1">2018.09.30 12:30:15 </span>
-                          <span class="participateText2">参与者地址：erewuryeowfsdkf73339dd</span>
-                        </div>
-                      </el-col>
-                      <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-                        <div class="participateList">
-                          <span class="participateText1">2018.09.30 12:30:15 </span>
-                          <span class="participateText2">参与者地址：erewuryeowfsdkf73339dd</span>
-                        </div>
-                      </el-col>
-                      <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-                        <div class="participateList">
-                          <span class="participateText1">2018.09.30 12:30:15 </span>
-                          <span class="participateText2">参与者地址：erewuryeowfsdkf73339dd</span>
-                        </div>
-                      </el-col>
-                      <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-                        <div class="participateList">
-                          <span class="participateText1">2018.09.30 12:30:15 </span>
-                          <span class="participateText2">参与者地址：erewuryeowfsdkf73339dd</span>
+                          <span class="participateText1">{{data.time}}</span>
+                          <span class="participateText2">参与者地址：{{data.address}}</span>
                         </div>
                       </el-col>
                     </el-row>
@@ -102,63 +84,63 @@
           </el-col>
         </el-row>
         <!--开奖历史-->
-        <el-row>
-          <el-col :span="24">
-            <div class="contentTitle">
-              <div class="logoS"></div>
-              <span>开奖历史</span>
-              <div class="logoS"></div>
-            </div>
-          </el-col>
-          <el-col :span="24">
-            <div class="contentCard">
-              <el-card class="box-card" style="padding: 0 4vw">
-                <el-row>
-                  <el-col :span="24">
-                    <span style="float: right">
-                      <router-link tag="a" target="_blank" to="/history">
-                        更多
-                        <i class="el-icon-arrow-right"></i>
-                      </router-link>
-                    </span>
-                  </el-col>
-                  <el-col :span="24">
-                    <el-row :gutter="20">
-                      <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-                        <div class="winHistory">
-                          <span class="winHistoryText1"><span class="date_icon"></span>2018.10.12 12:30:15</span>
-                          <span class="winHistoryText2">2566期 开奖结果公布</span>
-                          <span class="winHistoryText3" @click="showDetails">查看详情</span>
-                        </div>
-                      </el-col>
-                      <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-                        <div class="winHistory">
-                          <span class="winHistoryText1"><span class="date_icon"></span>2018.10.12 12:30:15</span>
-                          <span class="winHistoryText2">2566期 开奖结果公布</span>
-                          <span class="winHistoryText3" @click="showDetails">查看详情</span>
-                        </div>
-                      </el-col>
-                      <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-                        <div class="winHistory">
-                          <span class="winHistoryText1"><span class="date_icon"></span>2018.10.12 12:30:15</span>
-                          <span class="winHistoryText2">2566期 开奖结果公布</span>
-                          <span class="winHistoryText3" @click="showDetails">查看详情</span>
-                        </div>
-                      </el-col>
-                      <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-                        <div class="winHistory">
-                          <span class="winHistoryText1"><span class="date_icon"></span>2018.10.12 12:30:15</span>
-                          <span class="winHistoryText2">2566期 开奖结果公布</span>
-                          <span class="winHistoryText3" @click="showDetails">查看详情</span>
-                        </div>
-                      </el-col>
-                    </el-row>
-                  </el-col>
-                </el-row>
-              </el-card>
-            </div>
-          </el-col>
-        </el-row>
+        <!--<el-row>-->
+          <!--<el-col :span="24">-->
+            <!--<div class="contentTitle">-->
+              <!--<div class="logoS"></div>-->
+              <!--<span>开奖历史</span>-->
+              <!--<div class="logoS"></div>-->
+            <!--</div>-->
+          <!--</el-col>-->
+          <!--<el-col :span="24">-->
+            <!--<div class="contentCard">-->
+              <!--<el-card class="box-card" style="padding: 0 4vw">-->
+                <!--<el-row>-->
+                  <!--<el-col :span="24">-->
+                    <!--<span style="float: right">-->
+                      <!--<router-link tag="a" target="_blank" to="/history">-->
+                        <!--更多-->
+                        <!--<i class="el-icon-arrow-right"></i>-->
+                      <!--</router-link>-->
+                    <!--</span>-->
+                  <!--</el-col>-->
+                  <!--<el-col :span="24">-->
+                    <!--<el-row :gutter="20">-->
+                      <!--<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">-->
+                        <!--<div class="winHistory">-->
+                          <!--<span class="winHistoryText1"><span class="date_icon"></span>2018.10.12 12:30:15</span>-->
+                          <!--<span class="winHistoryText2">2566期 开奖结果公布</span>-->
+                          <!--<span class="winHistoryText3" @click="showDetails">查看详情</span>-->
+                        <!--</div>-->
+                      <!--</el-col>-->
+                      <!--<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">-->
+                        <!--<div class="winHistory">-->
+                          <!--<span class="winHistoryText1"><span class="date_icon"></span>2018.10.12 12:30:15</span>-->
+                          <!--<span class="winHistoryText2">2566期 开奖结果公布</span>-->
+                          <!--<span class="winHistoryText3" @click="showDetails">查看详情</span>-->
+                        <!--</div>-->
+                      <!--</el-col>-->
+                      <!--<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">-->
+                        <!--<div class="winHistory">-->
+                          <!--<span class="winHistoryText1"><span class="date_icon"></span>2018.10.12 12:30:15</span>-->
+                          <!--<span class="winHistoryText2">2566期 开奖结果公布</span>-->
+                          <!--<span class="winHistoryText3" @click="showDetails">查看详情</span>-->
+                        <!--</div>-->
+                      <!--</el-col>-->
+                      <!--<el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">-->
+                        <!--<div class="winHistory">-->
+                          <!--<span class="winHistoryText1"><span class="date_icon"></span>2018.10.12 12:30:15</span>-->
+                          <!--<span class="winHistoryText2">2566期 开奖结果公布</span>-->
+                          <!--<span class="winHistoryText3" @click="showDetails">查看详情</span>-->
+                        <!--</div>-->
+                      <!--</el-col>-->
+                    <!--</el-row>-->
+                  <!--</el-col>-->
+                <!--</el-row>-->
+              <!--</el-card>-->
+            <!--</div>-->
+          <!--</el-col>-->
+        <!--</el-row>-->
         <!--活动规则-->
         <el-row>
           <el-col :span="24">
@@ -197,53 +179,53 @@
 
 
     <!--开奖历史弹框-->
-    <el-dialog
-      :show-close='false'
-      :visible.sync="showWinHistoryVisible"
-      width="600px">
-      <span slot="title" class="showWinHistoryVisible_header" @click="closeDetails">
-          <span class="showWinHistoryVisible_close"><i class="el-icon-close"></i></span>
-      </span>
-      <div class="showWinHistoryContent">
-        <div class="showWinHistoryContent_title">
-          <span>- 3242 期开奖详情 -</span>
-        </div>
-        <div class="showWinHistoryContent_content">
-          <el-form label-position="left" label-width="120px">
-            <el-form-item label="开奖时间:">
-              <span class="showWinHistoryContent_item">
-                2018.10.12 15:20:33
-              </span>
-            </el-form-item>
-            <el-form-item label="获奖地址:">
-              <span class="showWinHistoryContent_item">
-                2sdskldfjsi234jsdlkfjsldfijlsdfj2342
-              </span>
-            </el-form-item>
-            <el-form-item label="总需人次:">
-              <span class="showWinHistoryContent_item">
-                1256人次
-              </span>
-            </el-form-item>
-            <el-form-item label="合约地址:">
-              <span class="showWinHistoryContent_item">
-                22378ldksjfoisudfklsjdfio2234564lsdifs
-              </span>
-            </el-form-item>
-            <el-form-item label="交易Hash值:">
-              <span class="showWinHistoryContent_item">
-                234sldkjflsdufoisd234lkjlksdfjios2342
-              </span>
-            </el-form-item>
-            <el-form-item label="上链时间:">
-              <span class="showWinHistoryContent_item">
-                2018/10.20 14:15:30
-              </span>
-            </el-form-item>
-          </el-form>
-        </div>
-      </div>
-    </el-dialog>
+    <!--<el-dialog-->
+      <!--:show-close='false'-->
+      <!--:visible.sync="showWinHistoryVisible"-->
+      <!--width="600px">-->
+      <!--<span slot="title" class="showWinHistoryVisible_header" @click="closeDetails">-->
+          <!--<span class="showWinHistoryVisible_close"><i class="el-icon-close"></i></span>-->
+      <!--</span>-->
+      <!--<div class="showWinHistoryContent">-->
+        <!--<div class="showWinHistoryContent_title">-->
+          <!--<span>- 3242 期开奖详情 -</span>-->
+        <!--</div>-->
+        <!--<div class="showWinHistoryContent_content">-->
+          <!--<el-form label-position="left" label-width="120px">-->
+            <!--<el-form-item label="开奖时间:">-->
+              <!--<span class="showWinHistoryContent_item">-->
+                <!--2018.10.12 15:20:33-->
+              <!--</span>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="获奖地址:">-->
+              <!--<span class="showWinHistoryContent_item">-->
+                <!--2sdskldfjsi234jsdlkfjsldfijlsdfj2342-->
+              <!--</span>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="总需人次:">-->
+              <!--<span class="showWinHistoryContent_item">-->
+                <!--1256人次-->
+              <!--</span>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="合约地址:">-->
+              <!--<span class="showWinHistoryContent_item">-->
+                <!--22378ldksjfoisudfklsjdfio2234564lsdifs-->
+              <!--</span>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="交易Hash值:">-->
+              <!--<span class="showWinHistoryContent_item">-->
+                <!--234sldkjflsdufoisd234lkjlksdfjios2342-->
+              <!--</span>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item label="上链时间:">-->
+              <!--<span class="showWinHistoryContent_item">-->
+                <!--2018/10.20 14:15:30-->
+              <!--</span>-->
+            <!--</el-form-item>-->
+          <!--</el-form>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</el-dialog>-->
   </div>
 </template>
 
@@ -251,10 +233,15 @@
   import Web3 from 'web3'
   import E from '../service/PCCommon'
 
+  function init() {
+    this.init_();
+    // this.init_2();
+    // this.init_3();
+  }
 
   //获取参与者数据
   function init_2() {
-    let url = 'module=account&action=txlist&address=0x588fD6DB7dff7e64f74b2ee6d8fD2b36613d6B1d&startblock=0&endblock=99999999&sort=desc'
+    let url = 'module=account&action=txlist&address=0x928ea63f59dd0a82a1b887993452fd50fddfb779&startblock=0&endblock=99999999&sort=desc'
     E.call(url).then((d) => {
       console.log(d);
     })
@@ -262,7 +249,7 @@
 
   //获取中奖信息
   function init_3() {
-    let url = 'module=account&action=txlistinternal&address=0x588fD6DB7dff7e64f74b2ee6d8fD2b36613d6B1d&startblock=0&endblock=99999999&sort=desc'
+    let url = 'module=account&action=txlistinternal&address=0x928ea63f59dd0a82a1b887993452fd50fddfb779&startblock=0&endblock=99999999&sort=desc'
     E.call(url).then((d) => {
       console.log(d);
     })
@@ -270,6 +257,7 @@
 
 
   function init_() {
+    let that = this
     //创建web3对象
     let web3 = new Web3();
 
@@ -320,6 +308,20 @@
         "type": "function"
       },
       {
+        "constant": true,
+        "inputs": [],
+        "name": "getPeriod",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
         "inputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -343,7 +345,8 @@
     ];
 
     //合约地址
-    let address = "0x588fD6DB7dff7e64f74b2ee6d8fD2b36613d6B1d";
+    // let address = "0x588fD6DB7dff7e64f74b2ee6d8fD2b36613d6B1d";
+    let address = "0x928ea63f59dd0a82a1b887993452fd50fddfb779";
 
     //通过ABI和地址获取已部署的合约对象
     let AllYoursContract = new web3.eth.Contract(abi,address);
@@ -352,6 +355,10 @@
     //查看当期多少人参加了抽奖
     let LuckyNum = AllYoursContract.methods.getCurrentJoinPersonNumber().call().then(function(result ){
       console.log("当前参加人数" + result);
+      that.participateNum = result;
+      that.progressNum = result / 4 * 100;
+      let width = parseInt(window.getComputedStyle(that.$refs.progressWidth).width);
+      that.progressNum2 = (width - 20) * that.progressNum / 100 - 40;
     });
 
 
@@ -359,9 +366,30 @@
     //人用&分割,时间和钱包地址用|分割
     let timeAddress = AllYoursContract.methods.getHistory().call().then(function(result) {
       console.log("参与人钱包地址 参加时间" + result);
+      let TA = [];
+      TA = result.split('&');
+      let addressArr = TA.slice(0);
+      addressArr.shift();
+      let taObjArr = [];
+      for (let i in addressArr){
+        let addressData = addressArr[i].split('|');
+        let addressObj = {
+          time: E.conData(addressData[0]),
+          address: addressData[1]
+        };
+        taObjArr.push(addressObj)
+      }
+      that.participateArr = taObjArr;
+      console.log(that.participateArr);
     });
 
-//     中奖方法事件回调 ???
+    // 查看当期期数
+    let periods = AllYoursContract.methods.getPeriod().call().then(function (result) {
+      console.log("当前期数" + result);
+      that.periodCurrent = result;
+    })
+
+    //中奖方法事件回调 ???
     let ClientReceipt = new web3.eth.Contract(abi,address);
     let clientReceipt = ClientReceipt.events.drawCallback(function(error, event){
       console.log(event);
@@ -380,16 +408,6 @@
 
 
 
-  function init() {
-    let that = this;
-    let width = parseInt(window.getComputedStyle(this.$refs.progressWidth).width);
-    that.progressNum2 = (width - 20) * that.progressNum / 100 - 40;
-    this.init_();
-    this.init_2();
-    this.init_3();
-  }
-
-
   function showDetails() {
     this.showWinHistoryVisible = true
   }
@@ -403,8 +421,15 @@
     props: {},
     data() {
       return {
-        progressNum: 76,
+        //参与人数
+        participateNum:0,
+        //进度
+        progressNum: 0,
         progressNum2: '',
+        //参与着地址/时间
+        participateArr:[],
+        //当前期数
+        periodCurrent:'',
         showWinHistoryVisible: false
       }
     },

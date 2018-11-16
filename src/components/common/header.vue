@@ -1,7 +1,20 @@
 <template>
   <div class="header">
     <el-row class="MaxWidth">
-      <el-col :span="24">
+      <el-col :span="6">
+        <div style="cursor: pointer;width: 55px;height: 55px; background: white;text-align: center;line-height: 55px">
+          <router-link tag="div" to="/">logo</router-link>
+        </div>
+      </el-col>
+      <el-col :span="10">
+        <div style="line-height: 55px">
+          <span class="header_item">活动规则</span>
+          <span class="header_item">
+            <router-link tag="div" to="/history">开奖历史</router-link>
+          </span>
+        </div>
+      </el-col>
+      <el-col :span="8">
         <div class="downloadApp">
           <div class="downloadButton" @click="openDownloadApp"><span class="iosicon"></span>IOS下载</div>
           <div class="downloadButton" @click="openDownloadApp"><span class="androidicon"></span>安卓下载</div>
