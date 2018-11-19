@@ -2,17 +2,6 @@
   <div class="details_wrap">
     <div class="frist_wrap">
       <div class="heaer_placeholder"></div>
-      <!--顶部-->
-      <!--<div class="header MaxWidth">-->
-        <!--<el-row>-->
-          <!--<el-col :span="24">-->
-            <!--<div class="downloadApp">-->
-              <!--<div class="downloadButton" @click="openDownloadApp"><span class="iosicon"></span>IOS下载</div>-->
-              <!--<div class="downloadButton" @click="openDownloadApp"><span class="androidicon"></span>安卓下载</div>-->
-            <!--</div>-->
-          <!--</el-col>-->
-        <!--</el-row>-->
-      <!--</div>-->
       <!--首屏内容-->
       <div class="progress_wrap MaxWidth">
         <el-row>
@@ -20,21 +9,22 @@
             <img class="logoL" src="../assets/images/logoL.png" alt="">
           </el-col>
           <el-col :span="24">
-            <span class="progress_text1">赢取 1ETH</span>
+            <span class="progress_text1">{{this.$route.params.bonusData.name}}</span>
+            <span class="progress_text1">赢取 {{this.$route.params.bonusData.bonusPool}}ETH</span>
             <div class="progress_text_warp">
-              <span class="progress_text2">夺宝仅需 0.01ETH</span>
+              <span class="progress_text2">夺宝仅需 {{this.$route.params.bonusData.price}}ETH</span>
               <span class="progress_text2">参与人次越多夺宝机会越大</span>
             </div>
           </el-col>
           <el-col :span="24">
             <div class="el-progress_warp" ref="progressWidth">
               <div class="progress_tip" :style="{ 'left': progressNum2 + 'px' }">
-                <span>开奖进度: {{progressNum}}%</span>
+                <span>开奖进度: {{this.$route.params.bonusData.progressNum}}%</span>
               </div>
-              <el-progress :percentage="progressNum" :stroke-width="18"
+              <el-progress :percentage="this.$route.params.bonusData.progressNum" :stroke-width="18"
                            :show-text='false' color="#FA52FC"></el-progress>
-              <span class="progress_text3" style="float: left">0.01ETH/人次</span>
-              <span class="progress_text3" style="float: right">参与人次: 100</span>
+              <span class="progress_text3" style="float: left">{{this.$route.params.bonusData.price}}ETH/人次</span>
+              <span class="progress_text3" style="float: right">参与人次: {{this.$route.params.bonusData.needNum}}</span>
             </div>
           </el-col>
           <el-col :span="24">
@@ -63,20 +53,19 @@
                 <el-row>
                   <el-col :span="24">
                     <div style="margin-bottom: 4vh">
-                      <span class="periodText">{{periodCurrent}}期</span>
-                      <span style="display: inline-block">{{participateNum}} 人已参与</span>
+                      <span class="periodText">{{this.$route.params.bonusData.periodCurrent}}期</span>
+                      <span style="display: inline-block">{{this.$route.params.bonusData.participateNum}} 人已参与</span>
                     </div>
                   </el-col>
                   <el-col :span="24">
                     <el-row :gutter="20">
                       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" v-for="(data,index) in participateArr" :key="index">
-                        <div class="participateList">
+                        <div class="participateList cardText">
                           <span class="participateText1">{{data.time}}</span>
                           <span class="participateText2">参与者地址：{{data.address}}</span>
                         </div>
                       </el-col>
                     </el-row>
-
                   </el-col>
                 </el-row>
               </el-card>
@@ -236,24 +225,18 @@
   function init() {
     this.init_();
     // this.init_2();
-    // this.init_3();
   }
 
-  //获取参与者数据
-  function init_2() {
-    let url = 'module=account&action=txlist&address=0x928ea63f59dd0a82a1b887993452fd50fddfb779&startblock=0&endblock=99999999&sort=desc'
-    E.call(url).then((d) => {
-      console.log(d);
-    })
-  }
 
-  //获取中奖信息
-  function init_3() {
-    let url = 'module=account&action=txlistinternal&address=0x928ea63f59dd0a82a1b887993452fd50fddfb779&startblock=0&endblock=99999999&sort=desc'
-    E.call(url).then((d) => {
-      console.log(d);
-    })
-  }
+  // //获取中奖信息
+  // function init_2() {
+  //   let that = this;
+  //   // let url = 'module=account&action=txlistinternal&address='+that.$route.params.bonusData.address+'&startblock=0&endblock=4&sort=desc'
+  //   let url = 'module=account&action=txlistinternal&address=0x928ea63f59dd0a82a1b887993452fd50fddfb779&startblock=0&endblock=99999999&page=1&offset=10&sort=desc'
+  //   E.call(url).then((d) => {
+  //     console.log(d);
+  //   })
+  // }
 
 
   function init_() {
@@ -346,21 +329,23 @@
 
     //合约地址
     // let address = "0x588fD6DB7dff7e64f74b2ee6d8fD2b36613d6B1d";
-    let address = "0x928ea63f59dd0a82a1b887993452fd50fddfb779";
+    let address = that.$route.params.bonusData.address;
 
     //通过ABI和地址获取已部署的合约对象
     let AllYoursContract = new web3.eth.Contract(abi,address);
 
     //*******************智能合约提供的接口******************
-    //查看当期多少人参加了抽奖
-    let LuckyNum = AllYoursContract.methods.getCurrentJoinPersonNumber().call().then(function(result ){
-      console.log("当前参加人数" + result);
-      that.participateNum = result;
-      that.progressNum = result / 4 * 100;
-      let width = parseInt(window.getComputedStyle(that.$refs.progressWidth).width);
-      that.progressNum2 = (width - 20) * that.progressNum / 100 - 40;
-    });
+    // // 查看当期多少人参加了抽奖
+    // let LuckyNum = AllYoursContract.methods.getCurrentJoinPersonNumber().call().then(function(result ){
+    //   console.log("当前参加人数" + result);
+    //   that.participateNum = result;
+    //   that.progressNum = result / that.$route.params.bonusData.needNum * 100;
+    //   let width = parseInt(window.getComputedStyle(that.$refs.progressWidth).width);
+    //   that.progressNum2 = (width - 20) * that.progressNum / 100 - 40;
+    // });
 
+    let width = parseInt(window.getComputedStyle(that.$refs.progressWidth).width);
+    that.progressNum2 = (width - 20) * that.$route.params.bonusData.progressNum / 100 - 40;
 
     //查看当期参与人的钱包地址和参加时间
     //人用&分割,时间和钱包地址用|分割
@@ -384,25 +369,25 @@
     });
 
     // 查看当期期数
-    let periods = AllYoursContract.methods.getPeriod().call().then(function (result) {
-      console.log("当前期数" + result);
-      that.periodCurrent = result;
-    })
+    // let periods = AllYoursContract.methods.getPeriod().call().then(function (result) {
+    //   console.log("当前期数" + result);
+    //   that.periodCurrent = result;
+    // })
 
-    //中奖方法事件回调 ???
-    let ClientReceipt = new web3.eth.Contract(abi,address);
-    let clientReceipt = ClientReceipt.events.drawCallback(function(error, event){
-      console.log(event);
-    })
-      .on('data', function (event) {
-        console.log(1);
-        console.log(event);
-      })
-      .on('changed', function(event){
-        console.log(2);
-        // remove event from local database
-      })
-      .on('error', console.error);
+    // //中奖方法事件回调 ???
+    // let ClientReceipt = new web3.eth.Contract(abi,address);
+    // let clientReceipt = ClientReceipt.events.drawCallback(function(error, event){
+    //   console.log(event);
+    // })
+    //   .on('data', function (event) {
+    //     console.log(1);
+    //     console.log(event);
+    //   })
+    //   .on('changed', function(event){
+    //     console.log(2);
+    //     // remove event from local database
+    //   })
+    //   .on('error', console.error);
 
   }
 
@@ -439,8 +424,7 @@
       showDetails,
       closeDetails,
       init_,
-      init_2,
-      init_3
+      // init_2
     },
     created() {
     },
