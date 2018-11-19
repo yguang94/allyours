@@ -1,5 +1,5 @@
 <template>
-  <div class="home_wrap">
+  <div class="details_wrap">
     <div class="frist_wrap">
       <div class="heaer_placeholder"></div>
       <!--顶部-->

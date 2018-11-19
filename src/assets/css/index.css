@@ -59,7 +59,7 @@ body{
   width: 100%;
   height: 100%;
 }
-.home_wrap{
+.details_wrap{
   width: 100%;
   height: 100%;
   /*background: url("../images/bgBar.png");*/
@@ -318,7 +318,7 @@ body{
 }
 
 /*下载弹窗*/
-.home_wrap .el-dialog__header, .showWinHistoryVisible_header{
+.details_wrap .el-dialog__header, .showWinHistoryVisible_header{
   padding: 0;
 }
 .DownloadAppDialog_close, .showWinHistoryVisible_close{
