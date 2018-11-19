@@ -7,11 +7,16 @@
       <!--banner-->
       <div class="historyProgrsess_warp MaxWidth">
         <img src="../assets/images/gift.png" class="historyProgrsess_img" alt="">
-        <span class="historyProgrsess_text">开奖历史</span>
+        <span class="historyProgrsess_text">{{this.$route.params.addressData.name}}奖池 开奖历史</span>
       </div>
     </div>
     <!--内容-->
-    <div class="historyContent_warp MaxWidth">
+    <div class="historyContent_warp MaxWidth" v-loading="historyContentLoading">
+      <!------------------------------如无数据----------------->
+      <div v-if="this.noData === -1" class="noData_warp">
+        <span class="noData_text">暂无开奖历史</span>
+      </div>
+      <!------------------------------------------------------>
       <el-row :gutter="15">
         <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" v-for="(data,index) in historyList" :key="index">
           <div style="margin: 10px 5px">
@@ -70,31 +75,6 @@
         </el-col>
       </el-row>
     </div>
-    <!--下载app弹框-->
-    <el-dialog
-      :show-close='false'
-      :visible.sync="DownloadAppVisible"
-      width="500px">
-        <span slot="title" class="DownloadAppDialog-header">
-          <span class="DownloadAppDialog_close" @click="closeDownloadApp"><i class="el-icon-close"></i></span>
-        </span>
-      <div class="DownloadAppDialogContent">
-        <span class="DownloadAppDialogText1">参与夺宝请下载客户端</span>
-        <span class="DownloadAppDialogText2">扫码下载客户端</span>
-        <div class="DownloadAppDialogContent_content">
-          <el-row :gutter="20">
-            <el-col :span="12">
-              <img class="DownloadAppDialog_img" src="../assets/images/erwei.png" alt="">
-              <span class="DownloadAppDialogText3">ios客户端</span>
-            </el-col>
-            <el-col :span="12">
-              <img class="DownloadAppDialog_img" src="../assets/images/erwei.png" alt="">
-              <span class="DownloadAppDialogText3">Android客户端</span>
-            </el-col>
-          </el-row>
-        </div>
-      </div>
-    </el-dialog>
   </div>
 </template>
 
@@ -108,7 +88,8 @@
   //获取中奖信息
   function init_3() {
     let that = this;
-    let url = 'module=account&action=txlistinternal&address=0x928ea63f59dd0a82a1b887993452fd50fddfb779&startblock=0&endblock=99999999&sort=desc'
+    that.historyContentLoading = true;
+    let url = 'module=account&action=txlistinternal&address=' + this.$route.params.addressData.address + '&startblock=0&endblock=99999999&sort=desc'
     E.call(url).then((d) => {
       console.log(d);
       for (let i in d) {
@@ -121,17 +102,16 @@
         that.historyList[k].periods = that.historyList.length - k
       }
       console.log(that.historyList);
+      that.historyContentLoading = false;
+    },function (d) {
+      console.log(d);
+      if (d === 'No transactions found') {
+        that.noData = -1
+        that.historyContentLoading = false;
+      }
     })
   }
 
-
-  function openDownloadApp() {
-    this.DownloadAppVisible = true
-  }
-
-  function closeDownloadApp() {
-    this.DownloadAppVisible = false
-  }
 
   export default {
     components: {},
@@ -139,14 +119,14 @@
     data() {
       return {
         historyList: [],
-        DownloadAppVisible: false
+        DownloadAppVisible: false,
+        noData: 0,
+        historyContentLoading:false
       }
     },
     watch: {},
     computed: {},
     methods: {
-      openDownloadApp,
-      closeDownloadApp,
       init_3
     },
     created() {

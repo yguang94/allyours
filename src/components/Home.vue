@@ -410,7 +410,8 @@ import index from "../router";
           },
           {
             name: '#3号',
-            address: '0xb35468ae8a8567290c63d89962241875d7c40044',
+//            address: '0xb35468ae8a8567290c63d89962241875d7c40044',
+            address: '0x928ea63f59dd0a82a1b887993452fd50fddfb779',
             periodCurrent:'',
             participateNum:'',
             price: '0.002',

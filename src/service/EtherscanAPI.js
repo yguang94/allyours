@@ -25,7 +25,7 @@ const EtherscanAPI = class EtherscanAPI {
               center: true
             })
           }
-          // reject(res.message)
+          reject(res.message)
         })
     })
   }

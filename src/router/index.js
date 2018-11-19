@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/components/Home'
-import history from '@/components/winHistory'
+import history from '@/components/History'
+import historyContent from '@/components/historyContent'
 import details from '@/components/Details'
 
 Vue.use(Router)
@@ -17,6 +18,11 @@ export default new Router({
       path: '/history',
       name: 'history',
       component: history
+    },
+    {
+      path: '/historyContent',
+      name: 'historyContent',
+      component: historyContent
     },
     {
       path: '/details',

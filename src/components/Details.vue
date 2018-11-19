@@ -9,7 +9,7 @@
             <img class="logoL" src="../assets/images/logoL.png" alt="">
           </el-col>
           <el-col :span="24">
-            <span class="progress_text1">{{this.$route.params.bonusData.name}}</span>
+            <span class="progress_text1">{{this.$route.params.bonusData.name}} 奖池</span>
             <span class="progress_text1">赢取 {{this.$route.params.bonusData.bonusPool}}ETH</span>
             <div class="progress_text_warp">
               <span class="progress_text2">夺宝仅需 {{this.$route.params.bonusData.price}}ETH</span>
@@ -24,7 +24,7 @@
               <el-progress :percentage="this.$route.params.bonusData.progressNum" :stroke-width="18"
                            :show-text='false' color="#FA52FC"></el-progress>
               <span class="progress_text3" style="float: left">{{this.$route.params.bonusData.price}}ETH/人次</span>
-              <span class="progress_text3" style="float: right">参与人次: {{this.$route.params.bonusData.needNum}}</span>
+              <span class="progress_text3" style="float: right">共需人次: {{this.$route.params.bonusData.needNum}}</span>
             </div>
           </el-col>
           <el-col :span="24">
@@ -48,7 +48,7 @@
             </div>
           </el-col>
           <el-col :span="24">
-            <div class="contentCard">
+            <div class="contentCard" v-loading="detailsContentLoading">
               <el-card class="box-card" style="padding: 0 4vw">
                 <el-row>
                   <el-col :span="24">
@@ -59,6 +59,9 @@
                   </el-col>
                   <el-col :span="24">
                     <el-row :gutter="20">
+
+                        <span class="noData_text" v-if="this.participateArr.length === 0">暂无开奖历史</span>
+
                       <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" v-for="(data,index) in participateArr" :key="index">
                         <div class="participateList cardText">
                           <span class="participateText1">{{data.time}}</span>
@@ -240,7 +243,8 @@
 
 
   function init_() {
-    let that = this
+    let that = this;
+    that.detailsContentLoading = true;
     //创建web3对象
     let web3 = new Web3();
 
@@ -366,6 +370,7 @@
       }
       that.participateArr = taObjArr;
       console.log(that.participateArr);
+      that.detailsContentLoading = false;
     });
 
     // 查看当期期数
@@ -392,15 +397,6 @@
   }
 
 
-
-  function showDetails() {
-    this.showWinHistoryVisible = true
-  }
-
-  function closeDetails() {
-    this.showWinHistoryVisible = false
-  }
-
   export default {
     components: {},
     props: {},
@@ -415,14 +411,13 @@
         participateArr:[],
         //当前期数
         periodCurrent:'',
-        showWinHistoryVisible: false
+        showWinHistoryVisible: false,
+        detailsContentLoading:false
       }
     },
     watch: {},
     computed: {},
     methods: {
-      showDetails,
-      closeDetails,
       init_,
       // init_2
     },
