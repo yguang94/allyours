@@ -4,17 +4,6 @@
     <img class="history_headerimg" src="../assets/images/winhistoryR.png" alt="">
     <div class="historyTitle_warp">
       <div class="heaer_placeholder"></div>
-      <!--顶部-->
-      <!--<div class="header MaxWidth">-->
-      <!--<el-row>-->
-      <!--<el-col :span="24">-->
-      <!--<div class="downloadApp">-->
-      <!--<div class="downloadButton" @click="openDownloadApp"><span class="iosicon"></span>IOS下载</div>-->
-      <!--<div class="downloadButton" @click="openDownloadApp"><span class="androidicon"></span>安卓下载</div>-->
-      <!--</div>-->
-      <!--</el-col>-->
-      <!--</el-row>-->
-      <!--</div>-->
       <!--banner-->
       <div class="historyProgrsess_warp MaxWidth">
         <img src="../assets/images/gift.png" class="historyProgrsess_img" alt="">
