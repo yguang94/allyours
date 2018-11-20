@@ -22,7 +22,7 @@
             <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" v-for="(data , index) in primaryDataList" :key="index">
               <div class="history_button_warp">
                 <span class="history_button">
-                  <router-link tag="div" :to="{name:'historyContent', params:{addressData:data} }">{{data.name}} 奖池#</router-link>
+                  <router-link tag="div" :to="{name:'historyContent', params:{addressData:data.address} }">{{data.name}} 奖池#</router-link>
                 </span>
               </div>
             </el-col>
@@ -38,7 +38,7 @@
             <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" v-for="(data,index) in intermediateDataList" :key="index">
               <div class="history_button_warp">
                 <span class="history_button">
-                  <router-link tag="div" :to="{name:'historyContent', params:{addressData:data} }">{{data.name}} 奖池#</router-link>
+                  <router-link tag="div" :to="{name:'historyContent', params:{addressData:data.address} }">{{data.name}} 奖池#</router-link>
                 </span>
               </div>
             </el-col>
@@ -54,7 +54,7 @@
             <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" v-for="(data,index) in ultimateDataList" :key="index">
               <div class="history_button_warp">
                 <span class="history_button">
-                  <router-link tag="div" :to="{name:'historyContent', params:{addressData:data} }">{{data.name}} 奖池#</router-link>
+                  <router-link tag="div" :to="{name:'historyContent', params:{addressData:data.address} }">{{data.name}} 奖池#</router-link>
                 </span>
               </div>
             </el-col>

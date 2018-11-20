@@ -37,7 +37,7 @@ import index from "../router";
                 </div>
                 <div class="home_card_button_warp">
                   <span class="home_card_button">
-                    <router-link tag="div" :to="{name:'details', params:{bonusData:data} }">立即夺宝</router-link>
+                    <router-link tag="div" :to="{name:'details', params:{addressData:data.address} }">立即夺宝</router-link>
                   </span>
                 </div>
               </el-card>
@@ -69,7 +69,7 @@ import index from "../router";
                 </div>
                 <div class="home_card_button_warp">
                   <span class="home_card_button">
-                    <router-link tag="div" :to="{name:'details', params:{bonusData:data} }">立即夺宝</router-link>
+                    <router-link tag="div" :to="{name:'details', params:{addressData:data.address} }">立即夺宝</router-link>
                   </span>
                 </div>
               </el-card>
@@ -101,7 +101,7 @@ import index from "../router";
                 </div>
                 <div class="home_card_button_warp">
                   <span class="home_card_button">
-                    <router-link tag="div" :to="{name:'details', params:{bonusData:data} }">立即夺宝</router-link>
+                    <router-link tag="div" :to="{name:'details', params:{addressData:data.address} }">立即夺宝</router-link>
                   </span>
                 </div>
               </el-card>
@@ -419,7 +419,7 @@ import index from "../router";
           },
           {
             name: '#3号',
-//            address: '0xb35468ae8a8567290c63d89962241875d7c40044',
+//          address: '0xb35468ae8a8567290c63d89962241875d7c40044',
             address: '0x928ea63f59dd0a82a1b887993452fd50fddfb779',
             periodCurrent:'',
             participateNum:'',

@@ -287,6 +287,12 @@ body{
   text-align: center;
   border-radius: 5px;
 }
+.participate_height{
+  width: 100%;
+  min-height: 160px;
+  max-height: 500px;
+  overflow: auto;
+}
 .participateList{
   width: 100%;
   height: 100px;
