@@ -16,18 +16,21 @@ import index from "../router";
       <!--小试牛刀-->
       <div class="primary_warp">
         <span class="contentHeader_icon"></span>
-        <span class="contentHeader_text">小试牛刀</span>
+        <div style="position: relative">
+          <span class="contentHeader_text">小试牛刀</span>
+          <span class="contentHeader_text2">ACTIVE GROUP</span>
+        </div>
         <div class="home_card_warp">
           <el-row :gutter="20">
             <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" v-for="(data,index) in primaryDataList" :key="index">
               <el-card class="box-card">
-                <div class="home_card_headerImg">
+                <div class="home_card_headerImg1">
                   <span>{{data.name}}</span>
                 </div>
                 <div class="home_card_content">
                   <span class="home_card_content_text1">赢取{{data.bonusPool}}ETH (以太坊)</span>
                   <span class="home_card_content_text2">{{data.periodCurrent}}期</span>
-                  <span class="home_card_content_text3">仅限{{data.price}}ETH/人次</span>
+                  <span class="home_card_content_text3"><span class="logo_icon"></span>仅限{{data.price}}ETH/人次</span>
                   <el-progress :percentage="data.progressNum" :stroke-width="10"
                                :show-text='false' color="#FA52FC"></el-progress>
                   <span class="home_card_content_text4">揭晓进度: {{data.progressNum}}%</span>
@@ -45,18 +48,21 @@ import index from "../router";
       <!--大显身手-->
       <div class="intermediate_warp">
         <span class="contentHeader_icon"></span>
-        <span class="contentHeader_text">大显身手</span>
+        <div style="position: relative">
+          <span class="contentHeader_text">大显身手</span>
+          <span class="contentHeader_text2">ACTIVE GROUP</span>
+        </div>
         <div class="home_card_warp">
           <el-row :gutter="20">
             <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" v-for="(data,index) in intermediateDataList" :key="index">
               <el-card class="box-card">
-                <div class="home_card_headerImg">
+                <div class="home_card_headerImg2">
                   <span>{{data.name}}</span>
                 </div>
                 <div class="home_card_content">
                   <span class="home_card_content_text1">赢取{{data.bonusPool}}ETH (以太坊)</span>
                   <span class="home_card_content_text2">{{data.periodCurrent}}期</span>
-                  <span class="home_card_content_text3">仅限{{data.price}}ETH/人次</span>
+                  <span class="home_card_content_text3"><span class="logo_icon"></span>仅限{{data.price}}ETH/人次</span>
                   <el-progress :percentage="data.progressNum" :stroke-width="10"
                                :show-text='false' color="#FA52FC"></el-progress>
                   <span class="home_card_content_text4">揭晓进度: {{data.progressNum}}%</span>
@@ -74,18 +80,21 @@ import index from "../router";
       <!--终极大奖-->
       <div class="ultimate_warp">
         <span class="contentHeader_icon"></span>
-        <span class="contentHeader_text">终极大奖</span>
+        <div style="position: relative">
+          <span class="contentHeader_text">终极大奖</span>
+          <span class="contentHeader_text2">ACTIVE GROUP</span>
+        </div>
         <div class="home_card_warp">
           <el-row :gutter="20">
             <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" v-for="(data,index) in ultimateDataList" :key="index">
               <el-card class="box-card">
-                <div class="home_card_headerImg">
+                <div class="home_card_headerImg3">
                   <span>{{data.name}}</span>
                 </div>
                 <div class="home_card_content">
                   <span class="home_card_content_text1">赢取{{data.bonusPool}}ETH (以太坊)</span>
                   <span class="home_card_content_text2">{{data.periodCurrent}}期</span>
-                  <span class="home_card_content_text3">仅限{{data.price}}ETH/人次</span>
+                  <span class="home_card_content_text3"><span class="logo_icon"></span>仅限{{data.price}}ETH/人次</span>
                   <el-progress :percentage="data.progressNum" :stroke-width="10"
                                :show-text='false' color="#FA52FC"></el-progress>
                   <span class="home_card_content_text4">揭晓进度: {{data.progressNum}}%</span>
@@ -104,7 +113,7 @@ import index from "../router";
       <div class="charity_warp" style="padding: 0 10px">
         <el-row :gutter="20">
           <el-col :span="24">
-            <el-card class="box-card">
+            <el-card class="box-card" style="padding: 20px">
                <span class="charity_text1">
                 <i class="el-icon-info" style="color: #FF8C28"></i> 温馨提示
                </span>

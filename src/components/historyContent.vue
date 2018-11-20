@@ -7,7 +7,7 @@
       <!--banner-->
       <div class="historyProgrsess_warp MaxWidth">
         <img src="../assets/images/gift.png" class="historyProgrsess_img" alt="">
-        <span class="historyProgrsess_text">{{this.$route.params.addressData.name}}奖池 开奖历史</span>
+        <span class="historyProgrsess_text">开奖历史 {{addressData.name}}奖池</span>
       </div>
     </div>
     <!--内容-->
@@ -41,17 +41,17 @@
                     </span>
                     </div>
                   </el-form-item>
-                  <el-form-item label="总需人次:">
-                    <div class="cardText">
-                      <span class="showWinHistoryContent_item">
-                      4人次
-                      </span>
-                    </div>
-                  </el-form-item>
+                  <!--<el-form-item label="总需人次:">-->
+                    <!--<div class="cardText">-->
+                      <!--<span class="showWinHistoryContent_item">-->
+                      <!--4人次-->
+                      <!--</span>-->
+                    <!--</div>-->
+                  <!--</el-form-item>-->
                   <el-form-item label="合约地址:">
                     <div class="cardText">
                       <span class="showWinHistoryContent_item">
-                      0x928ea63f59dd0a82a1b887993452fd50fddfb779
+                      {{ addressData.address }}
                       </span>
                     </div>
                   </el-form-item>
@@ -82,14 +82,14 @@
   import E from '../service/PCCommon'
 
   function init() {
-    this.init_3()
+    this.init_3();
   }
 
   //获取中奖信息
   function init_3() {
     let that = this;
     that.historyContentLoading = true;
-    let url = 'module=account&action=txlistinternal&address=' + this.$route.params.addressData.address + '&startblock=0&endblock=99999999&sort=desc'
+    let url = 'module=account&action=txlistinternal&address=' + that.addressData.address + '&startblock=0&endblock=99999999&sort=desc'
     E.call(url).then((d) => {
       console.log(d);
       for (let i in d) {
@@ -121,7 +121,11 @@
         historyList: [],
         DownloadAppVisible: false,
         noData: 0,
-        historyContentLoading:false
+        historyContentLoading:false,
+        addressData: {
+          address: this.$route.params.addressData.address ,
+          name: this.$route.params.addressData.name
+        }
       }
     },
     watch: {},
@@ -129,8 +133,7 @@
     methods: {
       init_3
     },
-    created() {
-    },
+    created() {},
     mounted: init
   }
 </script>

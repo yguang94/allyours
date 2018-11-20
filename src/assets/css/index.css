@@ -67,11 +67,21 @@ body{
   /*background-image: linear-gradient(45deg, #210116, #000);*/
 }
 .header{
-  height: 55px;
+  height: 65px;
   position: absolute;
   top: 0;
   width: 100%;
   z-index: 9;
+}
+.header_logo_txt{
+  display: inline-block;
+  color: #fff;
+  height: 65px;
+  font-size: 30px;
+  position: absolute;
+  left: 55px;
+  top: 0;
+  cursor: pointer;
 }
 .header_item{
   display: inline-block;
@@ -83,7 +93,7 @@ body{
   /*border: 1px solid #fff;*/
   /*border-radius: 3px;*/
   /*background: rgba(255,255,255,0.5);*/
-  margin-right: 5vw;
+  /*margin-right: 5vw;*/
   cursor: pointer;
 }
 .heaer_placeholder{
@@ -93,6 +103,40 @@ body{
 .MaxWidth{
   max-width: 1170px;
   margin: 0 auto !important;
+}
+.rules_warp{
+  padding: 10px 40px 40px 40px;
+}
+.rulesTitle{
+  display: block;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 auto;
+  width: 200px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.rulesContent{
+  display: block;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+.rulesButton{
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  width: 150px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 30px;
+  border: 1px solid #909399;
+  border-radius: 5px;
+  height: 35px;
+  line-height: 35px;
+  cursor: pointer;
+}
+.header .el-dialog__header{
+  padding: 0 0 20px 0 ;
 }
 /*首屏*/
 .downloadApp{
@@ -396,11 +440,11 @@ body{
 /*开奖历史*/
 .history_headerimg{
   position: absolute;
-  height: 260px;
+  height: 300px;
   width: 100%;
 }
 .historyTitle_warp{
-  height: 260px;
+  height: 300px;
   width: 100%;
   background: linear-gradient(to right, #020120, #210116);
 }
@@ -414,7 +458,7 @@ body{
   min-height: 55vh;
 }
 .historyProgrsess_warp{
-  padding: 30px 35px;
+  padding: 70px 35px;
 }
 .historyProgrsess_img{
   width: 36px;
@@ -456,16 +500,18 @@ body{
 /*头图*/
 .heaer_focus{
   width: 100%;
-  height: 600px;
+  height: 800px;
   background: rgba(215, 92, 198, 0.8);
+  background: url("../images/header.png") no-repeat center 100%;
+  background-size: cover;
 }
 .header_text{
   margin-left: 2vw;
-  padding-top: 170px;
+  padding-top: 250px;
 }
 .header_text1{
   display: block;
-  font-size: 55px;
+  font-size: 65px;
   color: #fff;
   margin-bottom: 20px;
   font-weight: 700;
@@ -484,7 +530,7 @@ body{
 .primary_warp, .intermediate_warp, .ultimate_warp, .charity_warp{
   margin: 2vw 2vw;
 }
-.primary_warp .el-card__body{
+.home_wrap .el-card__body{
   padding: 0;
 }
 .contentHeader_icon{
@@ -500,24 +546,44 @@ body{
   font-size: 24px;
   font-weight: 500;
 }
+.contentHeader_text2{
+  display: block;
+  color: #ececec;
+  font-size: 26px;
+  font-weight: 900;
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  z-index: -1;
+}
 .home_card_warp{
   margin: 50px 10px;
 }
 .box-card{
   margin: 10px 0;
 }
-.home_card_headerImg{
+.home_card_headerImg1, .home_card_headerImg2, .home_card_headerImg3{
   width: 100%;
-  height: 10vw;
+  height: 15vh;
   background: rgba(91, 39, 243, 0.6);
   color: #fff;
   font-size: 35px;
   font-weight: 700;
   text-align: center;
-  line-height: 10vw;
+  line-height: 15vh;
+}
+.home_card_headerImg1{
+  background: url("../images/purple.png") no-repeat 100% 100%;
+}
+.home_card_headerImg2{
+  background: url("../images/blue.png") no-repeat 100% 100%;
+}
+.home_card_headerImg3{
+  background: url("../images/red.png") no-repeat 100% 100%;
 }
 .home_card_content{
   margin: 15px;
+  position: relative;
 }
 .home_card_content_text1{
   display: block;
@@ -539,11 +605,23 @@ body{
   border-radius: 3px;
   margin-bottom: 10px;
 }
+.logo_icon{
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 20px;
+  background: url("../images/eth.png") no-repeat 100% 100%;
+  background-size: contain;
+  position: absolute;
+  top: 67px;
+  left: 0;
+}
 .home_card_content_text3{
   display: block;
   color: #868BAA;
   font-size: 16px;
   margin-bottom: 20px;
+  padding-left: 30px;
 }
 .home_card_content_text4{
   display: block;

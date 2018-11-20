@@ -19,7 +19,7 @@
           <el-col :span="24">
             <div class="el-progress_warp" ref="progressWidth">
               <div class="progress_tip" :style="{ 'left': progressNum2 + 'px' }">
-                <span>开奖进度: {{this.$route.params.bonusData.progressNum}}%</span>
+                <span>开奖进度: {{this.progressNum}}%</span>
               </div>
               <el-progress :percentage="this.$route.params.bonusData.progressNum" :stroke-width="18"
                            :show-text='false' color="#FA52FC"></el-progress>
@@ -49,12 +49,12 @@
           </el-col>
           <el-col :span="24">
             <div class="contentCard" v-loading="detailsContentLoading">
-              <el-card class="box-card" style="padding: 0 4vw">
+              <el-card class="box-card" style="padding: 0 2vw">
                 <el-row>
                   <el-col :span="24">
                     <div style="margin-bottom: 4vh">
-                      <span class="periodText">{{this.$route.params.bonusData.periodCurrent}}期</span>
-                      <span style="display: inline-block">{{this.$route.params.bonusData.participateNum}} 人已参与</span>
+                      <span class="periodText">{{this.periodCurrent}}期</span>
+                      <span style="display: inline-block">{{this.participateNum}} 人已参与</span>
                     </div>
                   </el-col>
                   <el-col :span="24">
@@ -339,14 +339,14 @@
     let AllYoursContract = new web3.eth.Contract(abi,address);
 
     //*******************智能合约提供的接口******************
-    // // 查看当期多少人参加了抽奖
-    // let LuckyNum = AllYoursContract.methods.getCurrentJoinPersonNumber().call().then(function(result ){
-    //   console.log("当前参加人数" + result);
-    //   that.participateNum = result;
-    //   that.progressNum = result / that.$route.params.bonusData.needNum * 100;
-    //   let width = parseInt(window.getComputedStyle(that.$refs.progressWidth).width);
-    //   that.progressNum2 = (width - 20) * that.progressNum / 100 - 40;
-    // });
+    // 查看当期多少人参加了抽奖
+    let LuckyNum = AllYoursContract.methods.getCurrentJoinPersonNumber().call().then(function(result ){
+      console.log("当前参加人数" + result);
+      that.participateNum = result;
+      that.progressNum = result / that.$route.params.bonusData.needNum * 100;
+      let width = parseInt(window.getComputedStyle(that.$refs.progressWidth).width);
+      that.progressNum2 = (width - 20) * that.progressNum / 100 - 40;
+    });
 
     let width = parseInt(window.getComputedStyle(that.$refs.progressWidth).width);
     that.progressNum2 = (width - 20) * that.$route.params.bonusData.progressNum / 100 - 40;
@@ -374,10 +374,10 @@
     });
 
     // 查看当期期数
-    // let periods = AllYoursContract.methods.getPeriod().call().then(function (result) {
-    //   console.log("当前期数" + result);
-    //   that.periodCurrent = result;
-    // })
+    let periods = AllYoursContract.methods.getPeriod().call().then(function (result) {
+      console.log("当前期数" + result);
+      that.periodCurrent = result;
+    })
 
     // //中奖方法事件回调 ???
     // let ClientReceipt = new web3.eth.Contract(abi,address);
